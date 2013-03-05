@@ -7,6 +7,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 
@@ -33,6 +36,22 @@ public class Alarm_Clock {
 		set.setMnemonic(KeyEvent.VK_A);
 		snooze.setMnemonic(KeyEvent.VK_S);
 		time.setFont(new Font("DejaVu Sans", Font.BOLD, 36));
+                timeHold.add(time);
+    	//set up menu bar and menu items
+    	JMenuBar menuBar = new JMenuBar();
+		JMenu fileMenu;
+		JMenu helpMenu;
+		JMenuItem helpMenuItem;
+		JMenuItem fileMenuItem;
+		fileMenu = new JMenu("File");
+		helpMenu = new JMenu("Help");
+		//set Mnemonics
+		fileMenu.setMnemonic('F');
+		helpMenu.setMnemonic('H');
+		menuBar.add(fileMenu);
+		menuBar.add(helpMenu);
+		helpMenuItem = new JMenuItem("About");
+	
 
 	}
 
