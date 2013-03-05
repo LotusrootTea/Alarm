@@ -20,6 +20,8 @@ public class Alarm_Clock {
 	/**
 	 * @param args
 	 */
+    private static Alarm anAlarm;
+    private static boolean military = true;
 	private static final JFrame backFrame=new JFrame("Alarm Clock");
 	protected static final JLabel time = new JLabel("00:00:00");
 	protected static JButton set = new JButton("Set Alarm");
@@ -68,6 +70,16 @@ public class Alarm_Clock {
 			{
 				backFrame.setTitle("Alarm Clock");
 				anAlarm = new Alarm();
+			}
+		});
+                fileMenu.add(fileMenuItem);
+		JMenuItem toggleFormat = new JMenuItem("Toggle 'Military time'");
+		toggleFormat.setMnemonic('T');
+		toggleFormat.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				military = !military;
 			}
 		});
 
