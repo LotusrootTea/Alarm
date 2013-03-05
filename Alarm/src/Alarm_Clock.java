@@ -1,3 +1,4 @@
+package alarm;
 
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -89,6 +90,7 @@ public class Alarm_Clock {
                 try {
                     //create a file to get current directory and navigate to the default_alarms page
                     randomFile = new File(new File(".").getCanonicalPath() + File.separator + "default_alarms");
+                    //here File it is taking string path name
                     chooser.setCurrentDirectory(randomFile);
                     chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
                 } catch (Exception ex) {
