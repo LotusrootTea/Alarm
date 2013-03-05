@@ -1,6 +1,8 @@
 package alarm;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.BoxLayout;
@@ -10,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -51,6 +54,14 @@ public class Alarm_Clock {
 		menuBar.add(fileMenu);
 		menuBar.add(helpMenu);
 		helpMenuItem = new JMenuItem("About");
+                helpMenuItem.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				JOptionPane.showMessageDialog(backFrame,
+			"you can mail the developer at"
+                                        +"sampath.surineni@gmail.com");}
+		});
 	
 
 	}
