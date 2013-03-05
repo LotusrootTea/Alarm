@@ -1,10 +1,14 @@
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -30,6 +34,39 @@ public class Alarm_Clock {
     	off.setMnemonic(KeyEvent.VK_O);
 		set.setMnemonic(KeyEvent.VK_A);
 		snooze.setMnemonic(KeyEvent.VK_S);
+                time.setFont(new Font("DejaVu Sans", Font.BOLD, 36));
+    	timeHold.add(time);
+    	//set up menu bar and menu items
+    	JMenuBar menuBar = new JMenuBar();
+		JMenu fileMenu;
+		JMenu helpMenu;
+		JMenuItem helpMenuItem;
+		JMenuItem fileMenuItem;
+		fileMenu = new JMenu("File");
+		helpMenu = new JMenu("Help");
+		//set Mnemonics
+		fileMenu.setMnemonic('F');
+		helpMenu.setMnemonic('H');
+		menuBar.add(fileMenu);
+		menuBar.add(helpMenu);
+		helpMenuItem = new JMenuItem("About");
+		helpMenuItem.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				JOptionPane.showMessageDialog(backFrame,
+					"To contact developer mail at sampath.surineni@gmail.com");
+			}
+		});
+                fileMenuItem = new JMenuItem("Cancel Alarm");
+		fileMenuItem.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				backFrame.setTitle("Alarm Clock");
+				anAlarm = new Alarm();
+			}
+		});
 
 	}
 
