@@ -113,6 +113,20 @@ public class Alarm_Clock {
                 }
             }
         });
+        
+        fileMenu.add(fileMenuItem);
+		fileMenu.addSeparator();
+		fileMenu.add(toggleFormat);
+		fileMenu.addSeparator();
+                fileMenuItem = new JMenuItem("Exit Program");
+                fileMenuItem.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				//if you click Exit program... the program exits
+				System.exit(0);
+			}
+		});
 
     }
 }
