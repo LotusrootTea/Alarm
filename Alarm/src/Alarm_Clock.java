@@ -20,9 +20,7 @@ import javax.swing.JPanel;
 
 public class Alarm_Clock {
 
-    /**
-     * @param args
-     */
+    
     private static Alarm anAlarm;
     private static boolean military = true;
     private static String fileLocation = "default_alarms" + File.separator + "newalarm1.wav";
@@ -113,20 +111,29 @@ public class Alarm_Clock {
                 }
             }
         });
-        
+
         fileMenu.add(fileMenuItem);
-		fileMenu.addSeparator();
-		fileMenu.add(toggleFormat);
-		fileMenu.addSeparator();
-                fileMenuItem = new JMenuItem("Exit Program");
-                fileMenuItem.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				//if you click Exit program... the program exits
-				System.exit(0);
-			}
-		});
+        fileMenu.addSeparator();
+        fileMenu.add(toggleFormat);
+        fileMenu.addSeparator();
+        fileMenuItem = new JMenuItem("Exit Program");
+        fileMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //if you click Exit program... the program exits
+                System.exit(0);
+            }
+        });
+        backPane.add(timeHold);
+        fileMenu.add(fileMenuItem);
+        bottom.add(set);
+        bottom.add(off);
+        vBottom.add(snooze);
+        backPane.add(timeHold);
+        backPane.add(bottom);
+        backPane.add(vBottom);
+        backFrame.add(backPane);
+        //add the JMenuBar so you can use it
+        backFrame.setJMenuBar(menuBar);
 
     }
 }
