@@ -1,5 +1,7 @@
 package alarm;
 
+import java.io.File;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -13,6 +15,8 @@ public class Alarm {
     private static String alarmTime = "-1";
     private boolean playFile;
     private String formatAlarmTime = "-1";
+    private static playMP3 mp3Trigger = null;
+    private static playWave trigger = new playWave("default_alarms" + File.separator + "alarm1.wav");
 
     public Alarm() {
         //sets default alarm time of -1
@@ -81,4 +85,31 @@ public class Alarm {
     public String getAlarmTime() {
         return alarmTime;
     }
+    public void mute(boolean mute)
+	{
+		if (mute && mp3Trigger == null)
+		{
+			trigger.mute();
+		}
+		else if (!mute && mp3Trigger == null)
+		{
+			trigger.unmute();
+		}
+	}
+    public void stopAlarm()
+	{
+		// Modification by Jake Rooney
+		if( mp3Trigger == null )
+		{
+			trigger.stopPlaying();
+			playFile = false;
+			return;
+		}
+		else {
+			mp3Trigger.stop();
+			playFile = false;
+			mp3Trigger = null;
+			return;
+		}
+	}
 }

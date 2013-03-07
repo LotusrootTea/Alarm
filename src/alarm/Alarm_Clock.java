@@ -1,5 +1,6 @@
 package alarm;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -23,7 +24,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Alarm_Clock {
-
+    private static boolean snoozePressed = false;
+    protected static boolean playingAlready = false;
     protected static boolean alarmGoOff = false;
     private static Alarm anAlarm;
     private static boolean military = true;
@@ -283,4 +285,22 @@ public class Alarm_Clock {
         return true;
 
     }
+    public static void stopAlarm()
+	{
+		//reset the JLabel's text to the default (black) color
+		time.setForeground(new Color(0,0,0));
+		//reset the backFrame's title to say Alarm Clock
+		backFrame.setTitle("Alarm Clock");
+		//reset the Set Alarm button's text to reflect that no alarm is set
+		set.setText("Set Alarm");
+		set.setEnabled(true);
+		anAlarm.mute(true);
+		anAlarm.stopAlarm();
+		//reset the anAlarm to be = "-1"
+		anAlarm = new Alarm();
+		playingAlready = false;
+		//reset snoozePressed flag
+		snoozePressed = false;
+		return;
+	}
 }
