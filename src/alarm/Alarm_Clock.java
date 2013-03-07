@@ -1,4 +1,5 @@
 package alarm;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -135,7 +136,16 @@ public class Alarm_Clock {
         backFrame.add(backPane);
         //add the JMenuBar so you can use it
         backFrame.setJMenuBar(menuBar);
-	
+	backFrame.setPreferredSize(new Dimension(290, 175));
+    	//pack it up so it's actually that size
+    	backFrame.pack();
+    	//set location to the middle of the screen
+    	backFrame.setLocationRelativeTo(null);
+    	//trying to set look and feel
+
+    	//make it all visible so it's interactable
+    	backFrame.setVisible(true);
+    	backFrame.setResizable(false);
 
 	}
 
