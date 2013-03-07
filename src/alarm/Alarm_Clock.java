@@ -221,5 +221,94 @@ public class Alarm_Clock {
     	});
 
 	}
+        private static boolean setAlarm(String alarmTime)
+ 	{
+ 		boolean ampm = false;
+ 		String amorpm = "am";
+ 		String h = "";
+ 		String m = "";
+ 		boolean colon = false;
+ 		char[] ar = alarmTime.toCharArray();
+ 		//get the character array and search for what we want
+ 		for(int i = 0; i<ar.length; i+=1)
+ 		{
+ 			//System.out.println(Character.isDigit(ar[i]) + ", character " + ar[i] + " is digit" );
+ 			if ( ar[i] == ':')
+ 			{
+ 				//flip flag for colon
+ 				colon = true;
+ 				continue;
+ 			}
+ 			if ( Character.isDigit(ar[i]) && !colon )
+ 			{
+ 				if ( Character.isDigit(ar[i+1]) )
+ 				{
+ 					h = ar[i] + "" +  ar[i+1];
+ 					i += 1;
+ 				}
+ 				else
+ 				{
+ 					h = ar[i] + "";
+ 				}
+ 				//System.out.println(h);
+ 				continue;
+ 			}
+ 			if ( Character.isDigit(ar[i]) && colon)
+ 			{
+ 				if ( Character.isDigit(ar[i+1]) )
+ 				{
+ 					m = ar[i] + "" +  ar[i+1];
+ 					i += 1;
+ 				}
+ 				else
+ 				{
+ 					m = ar[i] + "";
+ 				}
+ 				//System.out.println(m);
+ 				continue;
+ 			}
+ 			if ( ar[i] == 'a' || ar[i] == 'A' || ar[i] == 'p' || ar[i] == 'P')
+ 			{
+ 				ampm = true;
+ 				amorpm = "" + ar[i] + ar[i+1];
+ 				break;
+ 			}
+ 		}
+ 		//if we don't have a minute given, then we set it to be 0 (i.e. they input 5am)
+ 		int minute;
+ 		int hour;
+ 		try
+ 		{
+ 			minute = Integer.parseInt(m);
+ 		}
+ 		catch (Exception e)
+ 		{
+ 			minute = 00;
+ 		}
+ 		try
+ 		{
+ 			hour = Integer.parseInt(h);
+ 		}
+ 		catch (Exception e)
+ 		{
+ 			hour = 00;
+ 		}
+ 		if ( hour > 12 && ampm )
+ 		{
+			return false;
+ 		}
+ 		if ( hour > 23 )
+ 		{
+ 			return false;
+ 		}
+
+ 	//	System.out.println(hour + " hours, " + minute + " minutes, " + ampm + " am or pm was read, " + amorpm);
+
+ 		anAlarm = new Alarm(hour, minute, ampm, amorpm);
+ 		backFrame.setTitle("Alarm: " + anAlarm.getFormatAlarm());
+ 		System.out.println(anAlarm.getAlarmTime() + " " + anAlarm.getFormatAlarm());
+ 		return true;
+
+ 	}
 
 }
