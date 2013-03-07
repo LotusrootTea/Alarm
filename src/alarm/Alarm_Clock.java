@@ -1,7 +1,9 @@
 package alarm;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -17,6 +19,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 
 public class Alarm_Clock {
@@ -146,6 +149,76 @@ public class Alarm_Clock {
     	//make it all visible so it's interactable
     	backFrame.setVisible(true);
     	backFrame.setResizable(false);
+        set.addActionListener(new ActionListener()
+    	{
+    		public void actionPerformed(ActionEvent e)
+    		{final JFrame back = new JFrame("Set Alarm");
+    			//make it so the jframe is disposed on close instead of ending program
+    			back.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    			JPanel backPanel = new JPanel();
+    			JPanel top = new JPanel();
+    			JPanel bottom = new JPanel();
+    			backPanel.setLayout(new BoxLayout(backPanel, BoxLayout.Y_AXIS));
+    			final JLabel info = new JLabel("Input the alarm time below (12 or 24 hour format)");
+    			JButton submit = new JButton("Set Alarm");
+    			JButton cancel = new JButton("Cancel");
+    			final JTextField input = new JTextField("");
+				bottom.setLayout(new FlowLayout(FlowLayout.CENTER));
+				top.setLayout(new GridLayout(2,1,0,5));
+				//add everything
+    			top.add(info);
+    			top.add(input);
+    			bottom.add(submit);
+    			bottom.add(cancel);
+    			backPanel.add(top);
+    			backPanel.add(bottom);
+    			back.add(backPanel);
+    			//grab location of the main JFrame
+    			Point p = new Point(backFrame.getLocationOnScreen());
+    			back.pack();
+    			//set this new window's location to be on top of the old window's location
+    			back.setLocation(p);
+    			back.setResizable(false);
+    			back.setVisible(true);
+    			//set Mnemonic
+    			submit.setMnemonic(KeyEvent.VK_S);
+    			cancel.setMnemonic(KeyEvent.VK_C);
+				//end set up set alarm window
+				if (alarmGoOff)
+				{
+					info.setText("Please stop the alarm that is going off before you try to set a new one");
+					back.pack();
+					return;
+				}
+				//add action listeners
+				cancel.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						back.dispose();
+					}
+				});
+				submit.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent a)
+					{
+
+						if (!setAlarm(input.getText()) == true)
+						{
+							//if they messed up on entering it, display this new text reminding them to put it in the HH:MM format
+							info.setText("Please make sure you enter a valid time. (i.e. 13:00pm is not a valid time)");
+							//re pack to make sure the size is right for the new text
+							back.pack();
+						}
+						else
+						{
+							//when they get it right, dispose of this window, we don't need it anymore
+							back.dispose();
+						}
+					}
+				});
+    		}
+    	});
 
 	}
 
